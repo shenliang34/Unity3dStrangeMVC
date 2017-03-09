@@ -23,7 +23,7 @@ namespace test1
         {
             base.Launch();
 
-            Signal startSignal = injectionBinder.GetInstance<StartSignal>();
+            Signal startSignal = injectionBinder.GetInstance<HelloWorldSignals>();
             startSignal.Dispatch();
         }
 

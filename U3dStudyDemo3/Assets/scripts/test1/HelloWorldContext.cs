@@ -15,7 +15,7 @@ namespace test1
         {
             base.mapBindings();
 
-            commandBinder.Bind<StartSignal>().To<HelloWorldStartCommand>().Once();
+            commandBinder.Bind<HelloWorldSignals>().To<HelloWorldStartCommand>().Once();
 
             mediationBinder.Bind<HelloWorldView>().To<HelloWorldMediator>();
 
