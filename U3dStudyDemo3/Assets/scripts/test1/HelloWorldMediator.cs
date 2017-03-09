@@ -4,8 +4,10 @@ using strange.extensions.mediation.impl;
 
 namespace test1
 {
+    
     public class HelloWorldMediator:Mediator
     {
+        //**依赖注入//
         [Inject]
         public HelloWorldView view { get; set; }
         [Inject]
