@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "U3dStudyDemo3", "U3dStudyDemo3.csproj", "{B1AE2B7E-2E3C-93AD-0068-BD02F33380DB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B1AE2B7E-2E3C-93AD-0068-BD02F33380DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1AE2B7E-2E3C-93AD-0068-BD02F33380DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1AE2B7E-2E3C-93AD-0068-BD02F33380DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1AE2B7E-2E3C-93AD-0068-BD02F33380DB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
