@@ -9,6 +9,7 @@ namespace test1
     public class HelloWorldView : View
     {
         public HelloWorldSignals buttonclicked = new HelloWorldSignals();
+
         private Rect buttonRect = new Rect(0, 0, 200, 50);
         public void OnGUI()
         {
