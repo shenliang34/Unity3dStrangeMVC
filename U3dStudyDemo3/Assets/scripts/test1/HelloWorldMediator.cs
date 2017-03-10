@@ -17,5 +17,11 @@ namespace test1
 
             view.buttonclicked.AddListener(delegate () { manager.DoManagement(); });
         }
+
+        public override void OnRemove()
+        {
+            //base.OnRemove();
+            view.buttonclicked.RemoveListener(delegate () {manager.DoManagement(); });
+        }
     }
 }
