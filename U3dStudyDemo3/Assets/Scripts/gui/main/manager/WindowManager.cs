@@ -5,8 +5,8 @@ public class WindowManager : MonoBehaviour
 {
 
     // Use this for initialization
-
     private TestWidnow testwindow;
+
     void Start()
     {
 
@@ -22,15 +22,29 @@ public class WindowManager : MonoBehaviour
     {
         if(GUI.Button(new Rect(0,0,100,100),"打开界面"))
         {
-            testwindow = gameObject.AddComponent<TestWidnow>();
+            if(testwindow == null)
+            {
+                testwindow = gameObject.AddComponent<TestWidnow>();
+            }
+            testwindow.Show();
         }
 
         if(GUI.Button(new Rect(100,0,100,100),"关闭界面"))
         {
             if(testwindow)
             {
-                Destroy(testwindow);
+                testwindow.Close();
             }
         }
+    }
+
+    public void openWindow()
+    {
+
+    }
+
+    public void closeWindow()
+    {
+
     }
 }

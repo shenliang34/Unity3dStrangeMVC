@@ -21,6 +21,8 @@ public class GameWindow : BaseWindow
     protected string titlePath;
     //父节点
     protected string parentPath;
+    //0 
+    private int guiStatus;
 
     override protected void Start()
     {
@@ -30,7 +32,7 @@ public class GameWindow : BaseWindow
 
         //this.Resize(500,300);
         GameObject prefab = Resources.Load("mainui/windowPrefab") as GameObject;
-        GameObject window = Instantiate(prefab);
+        window = Instantiate(prefab);
 
         //设置父节点
         mainUI = GameObject.Find(parentPath);
@@ -86,11 +88,12 @@ public class GameWindow : BaseWindow
     override protected void OnGUI()
     {
         //GUI.DrawTexture(new Rect(50, 50, this.Width, this.Height), bgTexture);
-        //Screen.width
+        
         resetBgPosition();
 
         // Debug.Log("我是父类中的OnGUI");
         base.OnGUI();//调用基类中的onGUI
+        
     }
 
     //重置位置
@@ -120,6 +123,19 @@ public class GameWindow : BaseWindow
            // Rect pos = new Rect(, titleName.width, titleName.height);
             //GUI.DrawTexture(pos, titleName);
             titleImg.transform.position = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f + this.Height * 0.5f - 24, 0);
+        }
+    }
+
+    override public void Close()
+    {
+        window.SetActive(false);
+    }
+
+    public override void Show()
+    {
+        if (window)
+        {
+            window.SetActive(true);
         }
     }
 }

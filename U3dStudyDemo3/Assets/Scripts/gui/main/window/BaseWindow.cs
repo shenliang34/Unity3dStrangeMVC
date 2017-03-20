@@ -51,7 +51,7 @@ public class BaseWindow : MonoBehaviour , IWindow
     /// <summary>
     /// 宽
     /// </summary>
-    public float Width
+    virtual public float Width
     {
         get
         {
@@ -61,7 +61,7 @@ public class BaseWindow : MonoBehaviour , IWindow
     /// <summary>
     /// 高
     /// </summary>
-    public float Height
+    virtual public float Height
     {
         get
         {
@@ -71,21 +71,21 @@ public class BaseWindow : MonoBehaviour , IWindow
     /// <summary>
     /// 界面初始化
     /// </summary>
-    public void InitWindow()
+    virtual public void InitWindow()
     {
 
     }
     /// <summary>
     /// 界面显示
     /// </summary>
-    public void Show()
+    virtual public void Show()
     {
         
     }
     /// <summary>
     /// 界面关闭
     /// </summary>
-    public void Close()
+    virtual public void Close()
     {
 
     }
@@ -93,7 +93,7 @@ public class BaseWindow : MonoBehaviour , IWindow
     /// <summary>
     /// 缓动结束后显示
     /// </summary>
-    public void OnShow()
+    virtual public void OnShow()
     {
 
     }
@@ -101,7 +101,7 @@ public class BaseWindow : MonoBehaviour , IWindow
     /// <summary>
     /// 缓动结束后关闭
     /// </summary>
-    public void OnClose()
+    virtual public void OnClose()
     {
 
     }
