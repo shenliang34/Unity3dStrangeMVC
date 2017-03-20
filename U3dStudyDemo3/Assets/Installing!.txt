@@ -1,0 +1,35 @@
+To play the game : http://174.120.7.157/~farkow/semistan/SikeFutbol/simdioyna.html
+Watch the movie : http://www.youtube.com/watch?v=T8AMxIbyFhA
+
+This pack includes :
+	- Soccer Player Shoot animation *.bip file
+	- Soccer Player Idle animation  *.bip file
+	- Soccer Player Run animation  *.bip file
+	- Goal Net Model
+	- Soccer Player Model (FBX)
+	- Soccer Stadium with ground and tribune.
+	- Scoreboard GUITexture
+	- 8 Good Quality Ground Grass Textures (tileable)
+	and a completed simple two player soccer game with 11x11
+
+Installing:
+*You need to set keys to input:
+	for joystick 1
+		:  O1_Horizontal  
+		:  O1_Vertical
+		:  O1_Sut	  // shoot
+		:  O1_AdamDegis	  // change player
+		:  O1_Pas	  // pass
+		:  O1_TopaGit     // go to the ball
+		:  O1_Tesvik      // telephone call to chicane
+	for joystick 2
+		:  O2_Horizontal  
+		:  O2_Vertical
+		:  O2_Sut	  // shoot
+		:  O2_AdamDegis	  // change player
+		:  O2_Pas	  // pass
+		:  O2_TopaGit     // go to the ball
+		:  O2_Tesvik      // telephone call to chicane
+
+example
+O2_Sut : joystick 2 button 2
