@@ -6,7 +6,7 @@ public class WindowManager : MonoBehaviour
 
     // Use this for initialization
     private TestWidnow testwindow;
-
+    
     void Start()
     {
 
