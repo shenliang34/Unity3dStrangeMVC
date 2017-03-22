@@ -13,30 +13,34 @@ public class GameWindow : BaseWindow
     private Image titleImg;
     //标题名字
     private Texture2D titleName;
-    //ui的父节点
-    private GameObject mainUI;
-    //当前Window
-    private GameObject window;
     //地址
     protected string titlePath;
-    //父节点
-    protected string parentPath;
     //0 
     private int guiStatus;
 
     override protected void Start()
     {
+        base.Start();
+
+        if (titleName)
+        {
+            titleImg.sprite = Sprite.Create(titleName, new Rect(0, 0, titleName.width, titleName.height), new Vector2());
+            titleImg.rectTransform.sizeDelta = new Vector2(titleName.width, titleName.height);
+        }
+
+        //设置位置
+        resetBgPosition();
+
+        //关闭按钮事件
+        closeBtn.onClick.AddListener(onClickCloseBtn);
+    }
+
+    protected override void Awake()
+    {
         //加载资源
+        windowPath = "prefabs/WindowNormalPrefab";
 
-        //this.WindowType = EWindowType.Normal;
-
-        //this.Resize(500,300);
-        GameObject prefab = Resources.Load("mainui/windowPrefab") as GameObject;
-        window = Instantiate(prefab);
-
-        //设置父节点
-        mainUI = GameObject.Find(parentPath);
-        window.transform.SetParent(mainUI.transform);
+        base.Awake();
 
         //获取背景
         Transform bg = window.transform.Find("bg");
@@ -56,16 +60,8 @@ public class GameWindow : BaseWindow
         Transform titleTf = window.transform.Find("title");
         titleImg = titleTf.GetComponent<Image>();
 
-
+        //标题名字
         titleName = Resources.Load(titlePath) as Texture2D;
-        titleImg.sprite = Sprite.Create(titleName,new Rect(0,0,titleName.width,titleName.height),new Vector2());
-        titleImg.rectTransform.sizeDelta = new Vector2(titleName.width,titleName.height);
-
-        //设置位置
-        resetBgPosition();
-
-        //关闭按钮事件
-        closeBtn.onClick.AddListener(onClickCloseBtn);
     }
 
     private void onClickCloseBtn()
@@ -120,22 +116,7 @@ public class GameWindow : BaseWindow
         //标题
         if (titleName != null)
         {
-           // Rect pos = new Rect(, titleName.width, titleName.height);
-            //GUI.DrawTexture(pos, titleName);
             titleImg.transform.position = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f + this.Height * 0.5f - 24, 0);
-        }
-    }
-
-    override public void Close()
-    {
-        window.SetActive(false);
-    }
-
-    public override void Show()
-    {
-        if (window)
-        {
-            window.SetActive(true);
         }
     }
 }
