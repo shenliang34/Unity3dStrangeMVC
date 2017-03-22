@@ -7,7 +7,6 @@ using System.Collections.Generic;
 public class WindowManager : MonoBehaviour
 {
     // Use this for initialization
-    private GlobalAlertWindow alertWindow;
     //窗口集合
     private Dictionary<EWindowID, BaseWindow> windowDict = new Dictionary<EWindowID, BaseWindow>();
     //
@@ -72,13 +71,16 @@ public class WindowManager : MonoBehaviour
     /// <summary>
     /// 打开界面
     /// </summary>
-    public void openWindow(EWindowID id)
+    public BaseWindow openWindow(EWindowID id)
     {
         BaseWindow window = getWindowByid(id);
         if(window == null)
         {
             switch(id)
             {
+                case EWindowID.Alert:
+                    window = gameObject.AddComponent<GlobalAlertWindow>();
+                    break;
                 case EWindowID.Test:
                     window = gameObject.AddComponent<TestWindow>();
                     break;
@@ -96,6 +98,7 @@ public class WindowManager : MonoBehaviour
             windowDict[id] = window;
             window.Show();
         }
+        return window;
     }
 
     /// <summary>
@@ -138,18 +141,16 @@ public class WindowManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 打开提示界面
+    /// 打开只有确定的提示界面
     /// </summary>
     /// <param name="msg"></param>
     /// <param name="callback"></param>
     public void openAlertCenter(string msg,Action callback)
     {
-        if (alertWindow == null)
-        {
-            alertWindow = gameObject.AddComponent<GlobalAlertWindow>();
-        }
-        alertWindow.Show();
-        alertWindow.showCenter(msg, () => {
+        GlobalAlertWindow window = openWindow(EWindowID.Alert) as GlobalAlertWindow;
+
+        window.Show();
+        window.showCenter(msg, () => {
             Debug.Log("close");
             if(callback != null)
             {
@@ -158,14 +159,18 @@ public class WindowManager : MonoBehaviour
         });
     }
 
+    /// <summary>
+    /// 打开有确定，取消的提示界面
+    /// </summary>
+    /// <param name="msg"></param>
+    /// <param name="okFunc"></param>
+    /// <param name="closeFunc"></param>
     public void openAlertLeftRight(string msg, Action okFunc,Action closeFunc)
     {
-        if (alertWindow == null)
-        {
-            alertWindow = gameObject.AddComponent<GlobalAlertWindow>();
-        }
-        alertWindow.Show();
-        alertWindow.showLeftRight(msg, () => {
+        GlobalAlertWindow window = openWindow(EWindowID.Alert) as GlobalAlertWindow;
+        
+        window.Show();
+        window.showLeftRight(msg, () => {
             Debug.Log("sure");
             if (okFunc != null)
             {
@@ -185,9 +190,10 @@ public class WindowManager : MonoBehaviour
     /// </summary>
     private void closeAlertWindow()
     {
-        if (alertWindow)
+        GlobalAlertWindow window = getWindowByid(EWindowID.Alert) as GlobalAlertWindow;
+        if (window != null)
         {
-            alertWindow.Close();
+            window.Close();
         }
     }
 }

@@ -4,7 +4,6 @@ using System.Collections;
 public class TestWindow2 : GameWindow
 {
     // Use this for initialization
-
     protected override void Start()
     {
         base.Start();
@@ -12,7 +11,7 @@ public class TestWindow2 : GameWindow
 
     protected override void Awake()
     {
-        this.Resize(500, 500);
+        this.Resize(700, 300);
 
         parentPath = "Canvas";
 

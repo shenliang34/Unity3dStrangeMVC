@@ -22,6 +22,7 @@ public class GameWindow : BaseWindow
     {
         base.Start();
 
+        //名字
         if (titleName)
         {
             titleImg.sprite = Sprite.Create(titleName, new Rect(0, 0, titleName.width, titleName.height), new Vector2());
