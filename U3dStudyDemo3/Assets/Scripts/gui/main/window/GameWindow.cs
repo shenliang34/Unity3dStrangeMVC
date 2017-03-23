@@ -43,6 +43,9 @@ public class GameWindow : BaseWindow
 
         base.Awake();
 
+        //
+        window.GetComponent<Image>().rectTransform.localPosition = new Vector3(0,0,0);
+
         //获取背景
         Transform bg = window.transform.Find("bg");
         bgImg = bg.GetComponent<Image>();
@@ -50,19 +53,21 @@ public class GameWindow : BaseWindow
         bgImg.rectTransform.sizeDelta = bgPos;//设置背景大小
 
         //获取标题背景
-        Transform titleBg = window.transform.Find("titleBg");
+        Transform titleBg = bg.transform.Find("titleBg");
         titleBgImg = titleBg.GetComponent<Image>();
 
         //获取按钮
-        Transform btn = window.transform.Find("closeBtn");
+        Transform btn = bg.transform.Find("closeBtn");
         closeBtn = btn.GetComponent<Button>();
 
         //获取标题
-        Transform titleTf = window.transform.Find("title");
+        Transform titleTf = bg.transform.Find("title");
         titleImg = titleTf.GetComponent<Image>();
 
         //标题名字
         titleName = Resources.Load(titlePath) as Texture2D;
+
+        resetBgPosition();
     }
 
     private void onClickCloseBtn()
@@ -86,7 +91,7 @@ public class GameWindow : BaseWindow
     {
         //GUI.DrawTexture(new Rect(50, 50, this.Width, this.Height), bgTexture);
         
-        resetBgPosition();
+        //resetBgPosition();
 
         // Debug.Log("我是父类中的OnGUI");
         base.OnGUI();//调用基类中的onGUI
@@ -96,28 +101,28 @@ public class GameWindow : BaseWindow
     //重置位置
     private void resetBgPosition()
     {
-        //背景位置
+        ////背景位置
         if (bgImg)
         {
-            bgImg.rectTransform.position = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0);
+            bgImg.rectTransform.position = new Vector3();//new Vector3((Screen.width - this.Width) * 0.5f, (Screen.height - this.Height) * 0.5f, 0);
         }
 
-        //标题背景位置
-        if(titleBgImg)
-        {
-            titleBgImg.rectTransform.position = new Vector3(Screen.width * 0.5f, (Screen.height * 0.5f + this.Height * 0.5f - 22), 0);
-        }
+        ////标题背景位置
+        //if(titleBgImg)
+        //{
+        //    titleBgImg.rectTransform.position = new Vector3(Screen.width * 0.5f, (Screen.height * 0.5f + this.Height * 0.5f - 22), 0);
+        //}
 
-        //关闭按钮位置
-        if(closeBtn)
-        {
-            closeBtn.transform.position = new Vector3(Screen.width * 0.5f + this.Width * 0.5f - 12, (Screen.height * 0.5f + this.Height * 0.5f) - 21, 0);
-        }
+        ////关闭按钮位置
+        //if(closeBtn)
+        //{
+        //    closeBtn.transform.position = new Vector3(Screen.width * 0.5f + this.Width * 0.5f - 12, (Screen.height * 0.5f + this.Height * 0.5f) - 21, 0);
+        //}
 
-        //标题
-        if (titleName != null)
-        {
-            titleImg.transform.position = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f + this.Height * 0.5f - 24, 0);
-        }
+        ////标题
+        //if (titleName != null)
+        //{
+        //    titleImg.transform.position = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f + this.Height * 0.5f - 24, 0);
+        //}
     }
 }
