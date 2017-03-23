@@ -9,12 +9,15 @@ public class BaseWindow : MonoBehaviour , IWindow
     private bool modal;
     //窗口类型
     private int windowType;
+    //
+    private EWindowID windowId;
     //宽
     private float width;
     //高
     private float height;
+    //被动关闭后可弹出
 
-
+    protected bool canPop;
     //是否销毁
     protected bool isDestroy;
     //ui的父节点
@@ -25,6 +28,9 @@ public class BaseWindow : MonoBehaviour , IWindow
     protected string parentPath;
     //窗口路径
     protected string windowPath;
+
+    //
+    public event EventHandler onDestroy;
 
     /// <summary>
     /// 是否模态
@@ -41,6 +47,39 @@ public class BaseWindow : MonoBehaviour , IWindow
             modal = value;
         }
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public EWindowID WidowId
+    {
+        get
+        {
+            return windowId;
+        }
+
+        set
+        {
+            windowId = value;
+        }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public bool CanPop
+    {
+        get
+        {
+            return canPop;
+        }
+
+        set
+        {
+            canPop = value;
+        }
+    }
+
     /// <summary>
     /// 窗口类型
     /// </summary>
@@ -90,6 +129,8 @@ public class BaseWindow : MonoBehaviour , IWindow
     {
         if (window)
         {
+            BeforeShow();
+
             window.SetActive(true);
         }
     }
@@ -100,6 +141,8 @@ public class BaseWindow : MonoBehaviour , IWindow
     {
         if (window)
         {
+            BeforeClose();
+
             window.SetActive(false);
             //如果需要销毁就销毁
             if(isDestroy)
@@ -108,20 +151,25 @@ public class BaseWindow : MonoBehaviour , IWindow
                 Destroy(this);//销毁脚本
             }
         }
+        //返回
+        if(onDestroy != null)
+        {
+            onDestroy(this, EventArgs.Empty);
+        }
     }
 
     /// <summary>
-    /// 缓动结束后显示
+    /// 显示前
     /// </summary>
-    virtual public void OnShow()
+    virtual public void BeforeShow()
     {
 
     }
 
     /// <summary>
-    /// 缓动结束后关闭
+    /// 关闭前
     /// </summary>
-    virtual public void OnClose()
+    virtual public void BeforeClose()
     {
 
     }

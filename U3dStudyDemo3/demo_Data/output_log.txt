@@ -1,0 +1,119 @@
+Initialize engine version: 5.5.0f3 (38b4efef76f0)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: Intel(R) HD Graphics 4600 (ID=0x412)
+    Vendor:   Intel
+    VRAM:     1136 MB
+    Driver:   20.19.15.4531
+Begin MonoManager ReloadAssembly
+Platform assembly: F:\github\U3dStudyDemo3\U3dStudyDemo3\demo_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading F:\github\U3dStudyDemo3\U3dStudyDemo3\demo_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: F:\github\U3dStudyDemo3\U3dStudyDemo3\demo_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading F:\github\U3dStudyDemo3\U3dStudyDemo3\demo_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: F:\github\U3dStudyDemo3\U3dStudyDemo3\demo_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading F:\github\U3dStudyDemo3\U3dStudyDemo3\demo_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: F:\github\U3dStudyDemo3\U3dStudyDemo3\demo_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading F:\github\U3dStudyDemo3\U3dStudyDemo3\demo_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: F:\github\U3dStudyDemo3\U3dStudyDemo3\demo_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll (this message is harmless)
+Loading F:\github\U3dStudyDemo3\U3dStudyDemo3\demo_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
+Platform assembly: F:\github\U3dStudyDemo3\U3dStudyDemo3\demo_Data\Managed\Debuger.dll (this message is harmless)
+Loading F:\github\U3dStudyDemo3\U3dStudyDemo3\demo_Data\Managed\Debuger.dll into Unity Child Domain
+- Completed reload, in  0.027 seconds
+Platform assembly: F:\github\U3dStudyDemo3\U3dStudyDemo3\demo_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: F:\github\U3dStudyDemo3\U3dStudyDemo3\demo_Data\Managed\System.dll (this message is harmless)
+desktop: 1920x1080 60Hz; virtual: 3360x1086 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 1.368298 ms
+Setting up 1 worker threads for Enlighten.
+  Thread -> id: 44d4 -> priority: 1 
+1
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+close
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+2
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+close
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+add alert 
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+3
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+close
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+add alert 
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+3
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+tips (UnityEngine.UI.Text)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+close
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+3
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+close
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+add alert 
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+3
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+tips (UnityEngine.UI.Text)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+close
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+add alert 
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+3
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+close
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+3
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+close
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+

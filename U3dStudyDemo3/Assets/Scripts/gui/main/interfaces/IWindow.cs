@@ -9,11 +9,13 @@ interface IWindow
 
     float Height { get; }//高
 
+    EWindowID WidowId { get; set; }//窗口
+
     void Show();//显示
     void Close();//关闭
 
-    void OnShow();//显示界面  界面完全打开时调用
-    void OnClose();//界面关闭 界面完全关闭时调用
+    void BeforeShow();//显示界面前
+    void BeforeClose();//关闭界面前
 
     void InitWindow();//界面初始化
 }

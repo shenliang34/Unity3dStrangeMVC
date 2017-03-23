@@ -8,7 +8,6 @@ public class GlobalAlertWindow : BaseWindow
 {
     // Use this for initialization
     private Button centerBtn;
-
     private Button leftBtn;
     private Button rightBtn;
     private Text tips;
@@ -35,7 +34,6 @@ public class GlobalAlertWindow : BaseWindow
         rightBtn = window.transform.FindChild("rightBtn").GetComponent<Button>();
         tips = window.transform.FindChild("tips").GetComponent<Text>();
 
-        
         HideAll();
     }
 

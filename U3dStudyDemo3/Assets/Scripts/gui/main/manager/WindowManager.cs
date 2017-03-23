@@ -9,8 +9,10 @@ public class WindowManager : MonoBehaviour
     // Use this for initialization
     //窗口集合
     private Dictionary<EWindowID, BaseWindow> windowDict = new Dictionary<EWindowID, BaseWindow>();
-    //
-
+    //弹出框栈
+    private List<EWindowID> popWindows = new List<EWindowID>();
+    //当前弹出
+    private List<EWindowID> curWindows = new List<EWindowID>();
     void Start()
     {
 
@@ -26,12 +28,12 @@ public class WindowManager : MonoBehaviour
     {
         if(GUI.Button(new Rect(0,0,100,100),"打开普通界面"))
         {
-            openWindow(EWindowID.Test);
+            OpenWindow(EWindowID.Test);
         }
 
         if(GUI.Button(new Rect(100,0,100,100), "关闭普通界面"))
         {
-            closeWindow(EWindowID.Test);
+            CloseWindow(EWindowID.Test);
         }
 
         if (GUI.Button(new Rect(200, 0, 100, 100), "打开提示界面"))
@@ -59,27 +61,29 @@ public class WindowManager : MonoBehaviour
 
         if (GUI.Button(new Rect(600, 0, 100, 100), "打开普通界面"))
         {
-            openWindow(EWindowID.Test2);
+            OpenWindow(EWindowID.Test2);
         }
 
         if (GUI.Button(new Rect(700, 0, 100, 100), "关闭普通界面"))
         {
-            closeWindow(EWindowID.Test2);
+            CloseWindow(EWindowID.Test2);
         }
     }
 
     /// <summary>
     /// 打开界面
     /// </summary>
-    public BaseWindow openWindow(EWindowID id)
+    public BaseWindow OpenWindow(EWindowID id)
     {
         BaseWindow window = getWindowByid(id);
         if(window == null)
         {
+            //添加窗口脚本组件
             switch(id)
             {
                 case EWindowID.Alert:
                     window = gameObject.AddComponent<GlobalAlertWindow>();
+                    Debug.Log("add alert ");
                     break;
                 case EWindowID.Test:
                     window = gameObject.AddComponent<TestWindow>();
@@ -96,19 +100,77 @@ public class WindowManager : MonoBehaviour
         {
             //存储window
             windowDict[id] = window;
+            //显示
             window.Show();
+            //保存widId
+            window.WidowId = id;
+            //添加委托
+            window.onDestroy += DestroyWindow;
+
+            if(window.CanPop)
+            {
+                //是否已经存在
+                if(curWindows.Contains(id) == false)
+                {
+                    curWindows.Add(id);
+                }
+            }
+        }
+        Debug.Log(windowDict.Count);
+        return window;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="isAutoClose"></param>
+    /// <returns></returns>
+    public BaseWindow OpenWindow(EWindowID id, bool isAutoClose)
+    {
+        BaseWindow window = OpenWindow(id);
+        if(window)
+        {
+
         }
         return window;
     }
 
     /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void DestroyWindow(object sender, EventArgs e)
+    {
+        BaseWindow window = sender as BaseWindow;
+        if (window)
+        {
+            //
+            removeWindowById(window.WidowId);
+            //
+            //PopWindow();
+        }
+        
+        Debug.Log("DestroyWindow");
+
+        Debug.Log(windowDict.Count);
+    }
+
+    /// <summary>
     /// 关闭界面
     /// </summary>
-    public void closeWindow(EWindowID id)
+    public void CloseWindow(EWindowID id)
     {
         BaseWindow window = getWindowByid(id);
         if(window != null)
         {
+            Debug.Log("被动关闭");
+            //if(window.CanPop)
+            //{
+            //    popWindows.Add(id);
+            //}
+
             window.Close();
         }
     }
@@ -117,11 +179,23 @@ public class WindowManager : MonoBehaviour
     /// 移除
     /// </summary>
     /// <param name="id"></param>
-    public void removeWindow(EWindowID id)
+    public void removeWindowById(EWindowID id)
     {
         if(windowDict.ContainsKey(id))
         {
+            BaseWindow window = windowDict[id];
+            window.onDestroy -= DestroyWindow;
             windowDict.Remove(id);
+        }
+    }
+
+    //
+    public void removeWindowByClass(BaseWindow window)
+    {
+        if (windowDict.ContainsValue(window))
+        {
+            window.onDestroy -= DestroyWindow;
+            windowDict.Remove(window.WidowId);
         }
     }
 
@@ -147,7 +221,7 @@ public class WindowManager : MonoBehaviour
     /// <param name="callback"></param>
     public void openAlertCenter(string msg,Action callback)
     {
-        GlobalAlertWindow window = openWindow(EWindowID.Alert) as GlobalAlertWindow;
+        GlobalAlertWindow window = OpenWindow(EWindowID.Alert) as GlobalAlertWindow;
 
         window.Show();
         window.showCenter(msg, () => {
@@ -167,7 +241,7 @@ public class WindowManager : MonoBehaviour
     /// <param name="closeFunc"></param>
     public void openAlertLeftRight(string msg, Action okFunc,Action closeFunc)
     {
-        GlobalAlertWindow window = openWindow(EWindowID.Alert) as GlobalAlertWindow;
+        GlobalAlertWindow window = OpenWindow(EWindowID.Alert) as GlobalAlertWindow;
         
         window.Show();
         window.showLeftRight(msg, () => {
@@ -194,6 +268,32 @@ public class WindowManager : MonoBehaviour
         if (window != null)
         {
             window.Close();
+        }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public void PopWindow()
+    {
+        if (popWindows.Count > 0)
+        {
+            EWindowID id = popWindows[popWindows.Count - 1];
+
+            popWindows.RemoveAt(popWindows.Count - 1);
+
+            OpenWindow(id);
+        }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public void PushWindow(EWindowID id)
+    {
+        if(popWindows.Contains(id) == false)
+        {
+            popWindows.Add(id);
         }
     }
 }
