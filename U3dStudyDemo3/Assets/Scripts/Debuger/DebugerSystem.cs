@@ -31,7 +31,7 @@ public class DebugerSystem : MonoBehaviour{
 
     void Start()
     {
-        Debuger.EnableLog = EnableSystem;
+        //Debuger.EnableLog = EnableSystem;
     }
     
 }
