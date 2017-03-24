@@ -24,7 +24,7 @@ public class GlobalAlertWindow : BaseWindow
     override protected void Awake()
     {
         windowPath = "prefabs/WindowAlertPrefab";
-        parentPath = "Canvas";
+        parentPath = "Canvas/Alert";
 
         base.Awake();
 

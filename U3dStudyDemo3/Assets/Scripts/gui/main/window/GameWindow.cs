@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿//using DG.Tweening;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class GameWindow : BaseWindow
@@ -40,11 +41,22 @@ public class GameWindow : BaseWindow
     {
         //加载资源
         windowPath = "prefabs/WindowNormalPrefab";
+        parentPath = "Canvas/Window";
 
         base.Awake();
 
         //
-        window.GetComponent<Image>().rectTransform.localPosition = new Vector3(0,0,0);
+        window.transform.localPosition = new Vector3();
+
+        //Image winImage = window.GetComponent<Image>();
+        //Tweener tweener = winImage.rectTransform.DOMove(Vector3.zero, 1f);
+        //tweener.SetUpdate(true);
+        //tweener.SetEase(Ease.Linear);
+        //tweener.onComplete = delegate () { Debug.Log("完成"); };
+        //winImage.material.DOFade(0, 1f).onComplete = delegate () { Debug.Log("褪色完成"); };
+
+
+        window.GetComponent<Image>().rectTransform.sizeDelta = new Vector2(Screen.width,Screen.height);
 
         //获取背景
         Transform bg = window.transform.Find("bg");
@@ -104,25 +116,33 @@ public class GameWindow : BaseWindow
         ////背景位置
         if (bgImg)
         {
-            bgImg.rectTransform.position = new Vector3();//new Vector3((Screen.width - this.Width) * 0.5f, (Screen.height - this.Height) * 0.5f, 0);
+            bgImg.rectTransform.position = new Vector3((Screen.width - this.Width) * 0.5f, (Screen.height - this.Height) * 0.5f + this.Height);
         }
 
         ////标题背景位置
-        //if(titleBgImg)
-        //{
-        //    titleBgImg.rectTransform.position = new Vector3(Screen.width * 0.5f, (Screen.height * 0.5f + this.Height * 0.5f - 22), 0);
-        //}
+        if (titleBgImg)
+        {
+            titleBgImg.rectTransform.localPosition = new Vector3(this.Width * 0.5f, -22, 0);
+        }
 
         ////关闭按钮位置
-        //if(closeBtn)
-        //{
-        //    closeBtn.transform.position = new Vector3(Screen.width * 0.5f + this.Width * 0.5f - 12, (Screen.height * 0.5f + this.Height * 0.5f) - 21, 0);
-        //}
+        if (closeBtn)
+        {
+            closeBtn.transform.localPosition = new Vector3(this.Width - 1, -1, 0);
+        }
 
         ////标题
-        //if (titleName != null)
-        //{
-        //    titleImg.transform.position = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f + this.Height * 0.5f - 24, 0);
-        //}
+        if (titleName != null)
+        {
+            titleImg.transform.localPosition = new Vector3(this.Width * 0.5f, -23, 0);
+        }
     }
+
+    //
+    private void OnDestroy()
+    {
+        closeBtn.onClick.RemoveListener(onClickCloseBtn);
+    }
+
+
 }

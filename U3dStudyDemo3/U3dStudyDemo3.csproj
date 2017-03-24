@@ -79,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Bullet.cs" />
+    <Compile Include="Assets\EventTriggerListener.cs" />
     <Compile Include="Assets\Main.cs" />
     <Compile Include="Assets\Scripts\Debuger\DebugerSystem.cs" />
     <Compile Include="Assets\Scripts\MoveAnimationCurve.cs" />

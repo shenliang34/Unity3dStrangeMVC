@@ -13,8 +13,6 @@ public class TestWindow2 : GameWindow
     {
         this.Resize(700, 300);
 
-        parentPath = "Canvas";
-
         //设置标题地址
         titlePath = "mainui/title";
 
