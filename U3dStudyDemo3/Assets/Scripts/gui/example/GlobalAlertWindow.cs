@@ -42,12 +42,17 @@ public class GlobalAlertWindow : BaseWindow
     /// </summary>
     /// <param name="tip"></param>
     /// <param name="callback"></param>
-    public void showCenter(string tip, Action callback)
+    public void showCenter(string tip, string centerLab, Action callback)
     {
         HideAll();
 
         if(centerBtn)
         {
+            if(centerLab == null)
+            {
+                centerLab = "确定";
+            }
+            centerBtn.transform.Find("Text").GetComponent<Text>().text = centerLab;
             centerBtn.gameObject.SetActive(true);
             centerBtn.onClick.AddListener(delegate {
                 callback();
@@ -59,8 +64,6 @@ public class GlobalAlertWindow : BaseWindow
         {
             tips.text = tip;
         }
-        
-        Debug.Log(tips);
     }
 
     /// <summary>
@@ -69,18 +72,29 @@ public class GlobalAlertWindow : BaseWindow
     /// <param name="tip"></param>
     /// <param name="okFunc"></param>
     /// <param name="closeFunc"></param>
-    public void showLeftRight(string tip, Action okFunc, Action closeFunc)
+    public void showLeftRight(string tip, string leftLab, string rightLab, Action okFunc, Action closeFunc)
     {
         HideAll();
 
         if(leftBtn)
         {
+            if(leftLab == null)
+            {
+                leftLab = "确定";
+            }
+
+            leftBtn.transform.Find("Text").GetComponent<Text>().text = leftLab;
             leftBtn.gameObject.SetActive(true);
             leftBtn.onClick.AddListener(delegate { okFunc(); Close(); });
         }
         
         if(rightBtn)
         {
+            if (rightLab == null)
+            {
+                rightLab = "取消";
+            }
+            rightBtn.transform.Find("Text").GetComponent<Text>().text = rightLab;
             rightBtn.gameObject.SetActive(true);
             rightBtn.onClick.AddListener(delegate { closeFunc(); Close(); });
         }

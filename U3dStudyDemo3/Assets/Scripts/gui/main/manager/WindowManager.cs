@@ -39,7 +39,7 @@ public class WindowManager : MonoBehaviour
 
         if (GUI.Button(new Rect(200, 0, 100, 100), "打开提示界面"))
         {
-            openAlertCenter("打开提示界面",null);
+            openAlertCenter("打开提示界面",null,null);
         }
 
         if (GUI.Button(new Rect(300, 0, 100, 100), "关闭提示界面"))
@@ -68,6 +68,13 @@ public class WindowManager : MonoBehaviour
         if (GUI.Button(new Rect(700, 0, 100, 100), "关闭普通界面"))
         {
             CloseWindow(EWindowID.Test2);
+
+            //gameObject.transform.Find("Guide").SetSiblingIndex(gameObject.transform.Find("Alert").GetSiblingIndex());
+        }
+
+        if (GUI.Button(new Rect(800, 0, 100, 100), "打开确定提示框界面"))
+        {
+            openAlertCenter("打开确定提示框界面","了解", null);
 
             //gameObject.transform.Find("Guide").SetSiblingIndex(gameObject.transform.Find("Alert").GetSiblingIndex());
         }
@@ -225,13 +232,14 @@ public class WindowManager : MonoBehaviour
     /// 打开只有确定的提示界面
     /// </summary>
     /// <param name="msg"></param>
+    /// <param name="centerLab"></param>
     /// <param name="callback"></param>
-    public void openAlertCenter(string msg,Action callback)
+    public void openAlertCenter(string msg,string centerLab,Action callback)
     {
         GlobalAlertWindow window = OpenWindow(EWindowID.Alert) as GlobalAlertWindow;
 
         window.Show();
-        window.showCenter(msg, () => {
+        window.showCenter(msg, centerLab, () => {
             Debug.Log("close");
             if(callback != null)
             {
@@ -251,7 +259,7 @@ public class WindowManager : MonoBehaviour
         GlobalAlertWindow window = OpenWindow(EWindowID.Alert) as GlobalAlertWindow;
         
         window.Show();
-        window.showLeftRight(msg, () => {
+        window.showLeftRight(msg,null,null, () => {
             Debug.Log("sure");
             if (okFunc != null)
             {
