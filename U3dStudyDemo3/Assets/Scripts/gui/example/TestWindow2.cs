@@ -23,6 +23,7 @@ public class TestWindow2 : GameWindow
     {
         base.OnGUI();
 
+        GUI.skin = null;
         GUI.Label(new Rect(500, 100, 100, 20), "这是Testwindow2");
     }
 }

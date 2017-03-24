@@ -1,4 +1,5 @@
 ﻿//using DG.Tweening;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,7 +18,7 @@ public class GameWindow : BaseWindow
     //地址
     protected string titlePath;
     //0 
-    private int guiStatus;
+    private bool isTweenWindow;
 
     override protected void Start()
     {
@@ -29,9 +30,6 @@ public class GameWindow : BaseWindow
             titleImg.sprite = Sprite.Create(titleName, new Rect(0, 0, titleName.width, titleName.height), new Vector2());
             titleImg.rectTransform.sizeDelta = new Vector2(titleName.width, titleName.height);
         }
-
-        //设置位置
-        resetBgPosition();
 
         //关闭按钮事件
         closeBtn.onClick.AddListener(onClickCloseBtn);
@@ -55,9 +53,6 @@ public class GameWindow : BaseWindow
         //tweener.onComplete = delegate () { Debug.Log("完成"); };
         //winImage.material.DOFade(0, 1f).onComplete = delegate () { Debug.Log("褪色完成"); };
 
-
-        window.GetComponent<Image>().rectTransform.sizeDelta = new Vector2(Screen.width,Screen.height);
-
         //获取背景
         Transform bg = window.transform.Find("bg");
         bgImg = bg.GetComponent<Image>();
@@ -79,7 +74,11 @@ public class GameWindow : BaseWindow
         //标题名字
         titleName = Resources.Load(titlePath) as Texture2D;
 
-        resetBgPosition();
+        //数据初始化
+        isTweenWindow = false;
+        resetOtherPosition();
+
+        updateBgSize();
     }
 
     private void onClickCloseBtn()
@@ -102,12 +101,16 @@ public class GameWindow : BaseWindow
     override protected void OnGUI()
     {
         //GUI.DrawTexture(new Rect(50, 50, this.Width, this.Height), bgTexture);
-        
-        //resetBgPosition();
 
+        if (isTweenWindow)
+        {
+            resetBgPosition();
+
+            updateBgSize();
+        }
+        
         // Debug.Log("我是父类中的OnGUI");
         base.OnGUI();//调用基类中的onGUI
-        
     }
 
     //重置位置
@@ -118,7 +121,19 @@ public class GameWindow : BaseWindow
         {
             bgImg.rectTransform.position = new Vector3((Screen.width - this.Width) * 0.5f, (Screen.height - this.Height) * 0.5f + this.Height);
         }
+    }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    private void updateBgSize()
+    {
+        window.GetComponent<Image>().rectTransform.sizeDelta = new Vector2(Screen.width, Screen.height);
+    }
+    
+    //
+    private void resetOtherPosition()
+    {
         ////标题背景位置
         if (titleBgImg)
         {
@@ -144,5 +159,30 @@ public class GameWindow : BaseWindow
         closeBtn.onClick.RemoveListener(onClickCloseBtn);
     }
 
+    public override void BeforeShow()
+    {
+        base.BeforeShow();
 
+        if(isTweenWindow == false)
+        {
+            //添加一个缓动
+
+            bgImg.rectTransform.position = new Vector3((Screen.width - this.Width) * 0.5f, Screen.height + this.Height);
+            float endY = (Screen.height - this.Height) * 0.5f + this.Height;
+            bgImg.rectTransform.DOMoveY(endY, 0.2f, false).onComplete = delegate () 
+            {
+                isTweenWindow = true;
+                Debug.Log("tween complete");
+            };
+        }
+
+        //bgImg.transform.localScale = new Vector3(0,0,0);
+        //bgImg.transform.DOScaleY(1, 1f);
+    }
+
+    public override void BeforeClose()
+    {
+        base.BeforeClose();
+
+    }
 }

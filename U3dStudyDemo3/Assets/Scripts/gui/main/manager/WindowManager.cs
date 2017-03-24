@@ -13,6 +13,7 @@ public class WindowManager : MonoBehaviour
     private List<EWindowID> popWindows = new List<EWindowID>();
     //当前弹出
     private List<EWindowID> curWindows = new List<EWindowID>();
+
     void Start()
     {
 
@@ -67,6 +68,8 @@ public class WindowManager : MonoBehaviour
         if (GUI.Button(new Rect(700, 0, 100, 100), "关闭普通界面"))
         {
             CloseWindow(EWindowID.Test2);
+
+            //gameObject.transform.Find("Guide").SetSiblingIndex(gameObject.transform.Find("Alert").GetSiblingIndex());
         }
     }
 
@@ -115,6 +118,10 @@ public class WindowManager : MonoBehaviour
                     curWindows.Add(id);
                 }
             }
+
+            //顶置窗口
+            window.TopWindow();
+
         }
         Debug.Log(windowDict.Count);
         return window;

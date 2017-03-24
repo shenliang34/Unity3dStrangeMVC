@@ -73,6 +73,9 @@
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
+    <Reference Include="DOTween">
+      <HintPath>Assets\DOTween\DOTween.dll</HintPath>
+    </Reference>
     <Reference Include="Debuger">
       <HintPath>Assets\Scripts\Debuger\Debuger.dll</HintPath>
     </Reference>
@@ -218,6 +221,9 @@
     <Compile Include="Assets\Scripts\test2\GameStart.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\DOTween\DOTween.XML" />
+    <None Include="Assets\DOTween\Editor\DOTweenEditor.XML" />
+    <None Include="Assets\DOTween\readme.txt" />
     <None Include="Assets\Installing!.txt" />
     <None Include="Assets\Scripts\strange\extensions\ReadMe.txt" />
   </ItemGroup>

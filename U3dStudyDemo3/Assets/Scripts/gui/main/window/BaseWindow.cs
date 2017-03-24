@@ -31,6 +31,8 @@ public class BaseWindow : MonoBehaviour , IWindow
 
     //
     public event EventHandler onDestroy;
+    //
+    public event EventHandler onStart;
 
     /// <summary>
     /// 是否模态
@@ -141,8 +143,6 @@ public class BaseWindow : MonoBehaviour , IWindow
     {
         if (window)
         {
-            BeforeClose();
-
             window.SetActive(false);
             //如果需要销毁就销毁
             if(isDestroy)
@@ -171,7 +171,7 @@ public class BaseWindow : MonoBehaviour , IWindow
     /// </summary>
     virtual public void BeforeClose()
     {
-
+        
     }
 
     /// <summary>
@@ -183,6 +183,19 @@ public class BaseWindow : MonoBehaviour , IWindow
     {
         this.width = width;
         this.height = height;
+    }
+
+    //顶置窗口
+    public void TopWindow()
+    {
+        if(mainUI && window)
+        {
+            //统计数量
+            int count = mainUI.transform.childCount;
+            //调换层次
+            window.transform.SetSiblingIndex(count);
+            //mainUI.transform.GetChild(0);
+        }
     }
 
     /// <summary>
