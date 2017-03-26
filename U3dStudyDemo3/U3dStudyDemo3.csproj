@@ -216,6 +216,7 @@
     <Compile Include="Assets\Scripts\test1\SignalContext.cs" />
     <Compile Include="Assets\Scripts\test1\Test.cs" />
     <Compile Include="Assets\Scripts\test2\GameStart.cs" />
+    <Compile Include="Assets\Scripts\test3\test.cs" />
     <Compile Include="Assets\UIMain.cs" />
   </ItemGroup>
   <ItemGroup>
